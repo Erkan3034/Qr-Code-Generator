@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Kod Oluşturucu | Erkan_Turgut</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to right, #3498db, #2980b9); /* Mavi gradyan arka plan */
+            color: #fff;
+        }
+
+        h1, label {
+            margin-bottom: 10px;
+           
+        }
+        h1{
+          filter:drop-shadow(5px 8px 19px rgb(67, 255, 29)) ;
+  
+        }
+        
+        input {
+            padding: 8px;
+            width: 300px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #2ecc71;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            
+
+        }
+        button:hover{
+            background-color:#2cac6d;
+            font-size: 14px;
+        }
+
+        #qr-code {
+            margin-top: 20px;
+        }
+        #inputText{
+            border-radius: 20px;
+            border-color: #2980b9;
+            border-width: 4px;
+        }
+    </style>
+</head>
+<body>
+                      <h1>QR Code Generator</h1>
+    
+    <label for="inputText">Metin ya da Bağlantı Girin:</label>
+    <input type="text" id="inputText" placeholder="Enter text or link">
+
+    <button onclick="generateQRCode()">QR Kodu Oluştur</button>
+ 
+    <div id="qr-code"></div>
+
+    <!--CDN link-->
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script>
+        function generateQRCode() {
+            var inputText = document.getElementById('inputText').value;
+
+            if (inputText.trim() === "") {
+                alert("Lütfen bir metin veya bağlantı girin.");
+                return;
+            }
+
+            var qrCodeDiv = document.getElementById('qr-code');
+            qrCodeDiv.innerHTML = ""; // clean the previous qr code 
+
+            var qrcode = new QRCode(qrCodeDiv, {
+                text: inputText,
+                width: 128,
+                height: 128
+            });
+        }
+    </script>
+</body>
+</html>
